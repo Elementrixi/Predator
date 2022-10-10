@@ -29,8 +29,8 @@ public class Creature {
 
     public Creature(int row, int col) // constructor with row and col positions
     {
-        this.rowPosition = row;
-        this.colPosition = col;
+        this.setRowPosition(row);
+        this.setColPosition(col);
         this.timeSinceBreed = 0;
     }
 
@@ -39,8 +39,8 @@ public class Creature {
         this.breedingPoint = o.breedingPoint;
         this.timeSinceBreed = o.timeSinceBreed;
         this.symbol = o.symbol;
-        this.rowPosition = o.getRowPosition();
-        this.colPosition = o.getColPosition();
+        this.setRowPosition(o.getRowPosition());
+        this.setColPosition(o.getColPosition());
     }
 
     public char getSymbol() {
