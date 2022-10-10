@@ -56,10 +56,36 @@ public class Creature {
     }
 
     public void setRowPosition(int rowPosition) {
+        this.topFlag = false;
+        this.bottomFlag = false;
+
         this.rowPosition = rowPosition;
+
+        if (rowPosition <= 0)
+        {
+            this.topFlag = true;
+        }
+
+        else if(rowPosition >= 19)
+        {
+            this.bottomFlag = true;
+        }
     }
 
     public void setColPosition(int colPosition) {
+        this.leftFlag = false;
+        this.rightFlag = false;
+
         this.colPosition = colPosition;
+
+        if (colPosition <= 0)
+        {
+            this.leftFlag = true;
+        }
+
+        else if(colPosition >= 19)
+        {
+            this.rightFlag = true;
+        }
     }
 }
