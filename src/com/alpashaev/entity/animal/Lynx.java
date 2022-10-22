@@ -20,11 +20,11 @@ public class Lynx extends Creature {
         this.timeSinceEat = 0;
     }
 
-    public Lynx(Lynx d)
+    public Lynx(Lynx o)
     {
-        super(d); // ref to parent class method
-        this.symbol = d.symbol; // coping data for an ancestor
-        this.breedingPoint = d.breedingPoint;
-        this.timeSinceEat = d.timeSinceEat;
+        super(o); // ref to parent class method
+        this.symbol = o.symbol; // coping data for an ancestor
+        this.breedingPoint = o.breedingPoint;
+        this.timeSinceEat = o.timeSinceEat;
     }
 }
