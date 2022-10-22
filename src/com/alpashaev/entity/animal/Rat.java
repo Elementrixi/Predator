@@ -17,8 +17,8 @@ public class Rat extends Creature {
         this.breedingPoint = 3; // at what point an instance of Lynx being will breed
     }
 
-    public Rat(Rat a)
+    public Rat(Rat o)
     {
-        super(a);
+        super(o);
     }
 }
