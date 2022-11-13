@@ -7,6 +7,7 @@ public class Creature {
     public char symbol; // what symbol display at a console
     public int rowPosition;
     public int colPosition;
+    public int timeSinceEat;
 
     // for position validation in the edges of map
     public boolean topFlag;
@@ -34,13 +35,23 @@ public class Creature {
         this.timeSinceBreed = 0;
     }
 
-    public Creature(Creature o) // constructor of inheritancing
+    public Creature(Creature o) // constructor for inheritance
     {
         this.breedingPoint = o.breedingPoint;
         this.timeSinceBreed = o.timeSinceBreed;
         this.symbol = o.symbol;
         this.setRowPosition(o.getRowPosition());
         this.setColPosition(o.getColPosition());
+    }
+
+    public void eat(int[] coordinates){
+        System.out.println("Meal");
+    }
+
+    protected void defaultData(){
+        this.symbol = '1';
+        this.breedingPoint = -1;
+        this.timeSinceEat = -1;
     }
 
     public char getSymbol() {

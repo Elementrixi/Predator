@@ -5,20 +5,24 @@ public class Rat extends Creature {
     public Rat()
     {
         super(); // ref to parent class method
-        this.symbol = 'R'; //Rat symbol will be R
-        this.breedingPoint = 3; // at what point an instance of Lynx being will breed
+        defaultData();
     }
 
 
     public Rat(int row, int col)
     {
         super(row, col); // ref to parent class method
-        this.symbol = 'R'; //Rat symbol will be R
-        this.breedingPoint = 3; // at what point an instance of Lynx being will breed
+        defaultData();
     }
 
     public Rat(Rat o)
     {
         super(o);
+    }
+
+    @Override
+    protected void defaultData() {
+        this.symbol = 'R'; //Rat's symbol is R
+        this.breedingPoint = 3; // at what point an instance of Rat breeds
     }
 }
