@@ -32,5 +32,41 @@ public class Lynx extends Creature {
         this.timeSinceEat = 0;
     }
 
+    @Override
+    public void eat(int[] coordinates) {
+        Lynx lynx = (Lynx) Forest.getCreature(coordinates[0], coordinates[1]);
 
+        Integer[] randomDirections = Forest.randomDirections(); //Random direction list
+
+        boolean moveComplete = false;
+
+        for (int i = 0; i < 4 && (!moveComplete); i++) {
+            switch (randomDirections[i]) {
+                case 1:
+                    if (lynx.topFlag)
+                        break;
+
+                    moveComplete = true;
+                    break;
+                case 2:
+                    if (lynx.rightFlag)
+                        break;
+
+                    moveComplete = true;
+                    break;
+                case 3:
+                    if (lynx.bottomFlag)
+                        break;
+
+                    moveComplete = true;
+                    break;
+                case 4:
+                    if (lynx.leftFlag)
+                        break;
+
+                    moveComplete = true;
+                    break;
+            }
+        }
+    }
 }
