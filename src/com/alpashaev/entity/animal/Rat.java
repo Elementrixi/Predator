@@ -23,6 +23,6 @@ public class Rat extends Creature {
     @Override
     protected void defaultData() {
         this.symbol = 'R'; //Rat's symbol is R
-        this.breedingPoint = 3; // at what point an instance of Rat breeds
+        this.breedingPoint = 5; // at what point an instance of Rat breeds
     }
 }
