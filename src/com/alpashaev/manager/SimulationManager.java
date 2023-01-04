@@ -5,9 +5,11 @@ import com.alpashaev.entity.animal.Lynx;
 import com.alpashaev.entity.animal.Rat;
 import com.alpashaev.map.Forest;
 
+import java.util.Scanner;
+
 public class SimulationManager {
     public static void start(){
-      test();
+        simulationStarter();
     }
 
     public static void test(){
@@ -61,8 +63,7 @@ public class SimulationManager {
         for (int i = 0; i < Forest.numberOfRats; i++) {
             pos[i] = Forest.ratScanner();
         }
-        Forest.colScan=0;
-        Forest.rowScan=0;
+        Forest.rowColScanClear();
         return pos;
     }
 
@@ -71,17 +72,64 @@ public class SimulationManager {
         for (int i = 0; i < Forest.numberOfLynx; i++) {
             pos[i] = Forest.lynxScanner();
         }
-        Forest.colScan=0;
-        Forest.rowScan=0;
+        Forest.rowColScanClear();
         return pos;
     }
+    public static void moveLynx(int[] coordinates) {
+        int row = coordinates[0];
+        int col = coordinates[1];
+        Lynx lynx = (Lynx) Forest.getCreature(row, col);
 
-    public static void move(int[] coordinates) {
+        Integer[] randomDirections = Forest.randomDirections();
+        boolean moveComplete = false;
+        for (int i = 0; i < 4 && (moveComplete == false); i++) {
+            switch (randomDirections[i]) {
+                case 1:
+                    if (lynx.topFlag)
+                        break;
+
+                    if (Forest.getCreature(coordinates[0] - 1, coordinates[1]) == null) {
+                        Forest.movement(Forest.getCreature(coordinates[0], coordinates[1]), 1);
+                        moveComplete = true;
+                    }
+                    break;
+                case 2:
+                    if (lynx.rightFlag)
+                        break;
+
+                    if (Forest.getCreature(coordinates[0], coordinates[1] + 1) == null) {
+                        Forest.movement(Forest.getCreature(coordinates[0], coordinates[1]), 2);
+                        moveComplete = true;
+                    }
+                    break;
+                case 3:
+                    if (lynx.bottomFlag)
+                        break;
+
+                    if (Forest.getCreature(coordinates[0] + 1, coordinates[1]) == null) {
+                        Forest.movement(Forest.getCreature(coordinates[0], coordinates[1]), 3);
+                        moveComplete = true;
+                    }
+                    break;
+                case 4:
+                    if (lynx.leftFlag)
+                        break;
+
+                    if (Forest.getCreature(coordinates[0], coordinates[1] - 1) == null) {
+                        Forest.movement(Forest.getCreature(coordinates[0], coordinates[1]), 4);
+                        moveComplete = true;
+                    }
+                    break;
+            }
+        }
+    }
+
+    public static void moveRat(int[] coordinates) {
         int row = coordinates[0];
         int col = coordinates[1];
 
-        Creature rat = Forest.getCreature(row, col);
-        char letter = rat.getSymbol();
+        Rat rat = (Rat) Forest.getCreature(row, col);
+
         Integer[] randomDirections = Forest.randomDirections();
         boolean moveComplete = false;
 
@@ -127,7 +175,7 @@ public class SimulationManager {
         }
     }
 
-    public static void simulation(Forest forest) {
+    public static void simulation(Forest forest) throws Exception {
         int[][] lynxPositions = new int[Forest.numberOfLynx][2];
         lynxPositions = lynxPositions();
         int[] position = new int[2];
@@ -149,9 +197,103 @@ public class SimulationManager {
                 Lynx lynx = (Lynx) Forest.getCreature(position);
                 lynx.timeSinceEat++;
                 lynx.timeSinceBreed++;
-                move(position);
+                moveLynx(position);
+            }
+        }
+        int[][] ratPositions = new int[Forest.numberOfRats][2];
+        ratPositions = ratPositions();
+
+        for (int i = 0; i < Forest.numberOfRats; i++) {
+            position = ratPositions[i];
+
+            Rat rat = (Rat) Forest.getCreature(position);
+            rat.timeSinceBreed++;
+            moveRat(position);
+        }
+
+
+        Forest.rowColScanClear();
+
+
+//Breeding for Lynx
+        lynxPositions = lynxPositions();
+        int numberOfLynx = Forest.numberOfLynx;
+        for (int i = 0; i < numberOfLynx; i++) {
+            //Get lynx Coordinates
+            position = lynxPositions[i];
+            int row = position[0];
+            int col = position[1];
+
+            if (row < 0 || col < 0) {
+                break;
+            }
+            forest.breed(Forest.getCreature(position));
+        }
+
+//Breeding for Rat
+        ratPositions = ratPositions();
+        int tempNumberOfRats = Forest.numberOfRats;
+
+        for (int i = 0; i < tempNumberOfRats; i++) {
+            //Get rat Coordinates
+            position = ratPositions[i];
+            int row = position[0];
+            int col = position[1];
+
+            if (row < 0 || col < 0) {
+                break;
+            }
+
+            forest.breed(Forest.getCreature(row, col));
+        }
+
+//Hunger
+        lynxPositions = lynxPositions();
+        numberOfLynx = Forest.numberOfLynx;
+
+        for (int i = 0; i < numberOfLynx; i++) {
+            forest.starving((Lynx) Forest.getCreature(lynxPositions[i][0], lynxPositions[i][1]));
+        }
+
+    }
+    public static void simulationStarter() {
+        {
+            int rats, lynx, maxStep;
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter 0 if you want to use default data if no any other number");
+            if (scanner.nextInt() == 0) {
+                rats = 50;
+                lynx = 50;
+                Lynx.hungerTimeMax = 6;
+                maxStep = 40;
+
+            } else {
+                System.out.println("Number of rats, lynxes, max step amount");
+                rats = scanner.nextInt();
+                lynx = scanner.nextInt();
+                maxStep = scanner.nextInt();
+
+                System.out.println("Hunger time max for lynxes");
+                Lynx.hungerTimeMax = scanner.nextInt();
+            }
+            Forest forest = new Forest(rats, lynx);
+
+            forest.printField();
+            int i = 0;
+            try {
+                while (Forest.numberOfRats != 0 || Forest.numberOfLynx != 0) {
+
+                    simulation(forest);
+
+                    forest.printField();
+                    i++;
+
+                    fieldPause();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Simulation ended up at step " + i);
             }
         }
     }
-
 }

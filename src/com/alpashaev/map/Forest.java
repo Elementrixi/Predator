@@ -51,6 +51,11 @@ public class Forest {
 
     }
 
+    public static void rowColScanClear(){
+        rowScan = 0;
+        colScan = 0;
+    }
+
     public void placeCreature(Creature creature)
     {
         int row = randomNumGen.nextInt(20);
@@ -82,6 +87,8 @@ public class Forest {
 
     public static Creature getCreature(int row, int col)
     {
+        if (row < 0 ) return forest[row + 1][col];
+        if (col < 0) return forest[row][col+1];
         return forest[row][col];
     }
 
@@ -533,66 +540,69 @@ public class Forest {
 
     public static void movement(Creature creature, int direction)
     {
-        int rowPos = creature.getRowPosition();
-        int colPos = creature.getColPosition();
+        try {
+            int rowPos = creature.getRowPosition();
+            int colPos = creature.getColPosition();
 
-        if (creature.getSymbol() == 'R')
-        {
-            switch (direction)
-            {
-                case 1:
-                    forest[rowPos - 1][colPos] = new Rat((Rat) creature);
-                    getCreature(rowPos - 1, colPos).setRowPosition(rowPos - 1);
-                    forest[rowPos][colPos] = null;
+            if ('R' == creature.getSymbol()) {
+                switch (direction) {
+                    case 1:
+                        forest[rowPos - 1][colPos] = new Rat((Rat) creature);
+                        getCreature(rowPos - 1, colPos).setRowPosition(rowPos - 1);
+                        forest[rowPos][colPos] = null;
+//				rowPos--;
+                        break;
+                    case 2:
+                        forest[rowPos][colPos + 1] = new Rat((Rat) creature);
+                        getCreature(rowPos, colPos + 1).setColPosition(colPos + 1);
+                        forest[rowPos][colPos] = null;
+//				colPos++;
+                        break;
+                    case 3:
+                        forest[rowPos + 1][colPos] = new Rat((Rat) creature);
+                        getCreature(rowPos + 1, colPos).setRowPosition(rowPos + 1);
+                        forest[rowPos][colPos] = null;
+//				rowPos++;
+                        break;
+                    case 4:
+                        forest[rowPos][colPos - 1] = new Rat((Rat) creature);
+                        getCreature(rowPos, colPos - 1).setColPosition(colPos - 1);
+                        forest[rowPos][colPos] = null;
+//				colPos--;
+                        break;
+                }
+            } else if (creature.getSymbol() == 'L') {
+                switch (direction) {
+                    case 1:
+                        forest[rowPos - 1][colPos] = new Lynx((Lynx) creature);
+                        getCreature(rowPos - 1, colPos).setRowPosition(rowPos - 1);
+                        forest[rowPos][colPos] = null;
+//				rowPos--;
+                        break;
+                    case 2:
+                        forest[rowPos][colPos + 1] = new Lynx((Lynx) creature);
+                        getCreature(rowPos, colPos + 1).setColPosition(colPos + 1);
+                        forest[rowPos][colPos] = null;
+//				colPos++;
+                        break;
+                    case 3:
+                        forest[rowPos + 1][colPos] = new Lynx((Lynx) creature);
+                        getCreature(rowPos + 1, colPos).setRowPosition(rowPos + 1);
+                        forest[rowPos][colPos] = null;
+//				rowPos++;
+                        break;
+                    case 4:
+                        forest[rowPos][colPos - 1] = new Lynx((Lynx) creature);
+                        getCreature(rowPos, colPos - 1).setColPosition(colPos - 1);
+                        forest[rowPos][colPos] = null;
+//				colPos--;
+                        break;
+                }
 
-                    break;
-                case 2:
-                    forest[rowPos][colPos + 1] = new Rat((Rat) creature);
-                    getCreature(rowPos, colPos + 1).setColPosition(colPos + 1);
-                    forest[rowPos][colPos] = null;
-                    break;
-                case 3:
-                    forest[rowPos + 1][colPos] = new Rat((Rat) creature);
-                    getCreature(rowPos + 1, colPos).setRowPosition(rowPos + 1);
-                    forest[rowPos][colPos] = null;
-
-                    break;
-                case 4:
-                    forest[rowPos][colPos - 1] = new Rat((Rat) creature);
-                    getCreature(rowPos, colPos - 1).setColPosition(colPos - 1);
-                    forest[rowPos][colPos] = null;
-
-                    break;
+                creature.timeSinceBreed++; //Increment counter for breeding
             }
-        }
-
-        else if(creature.getSymbol() == 'L')
-        {
-            switch (direction)
-            {
-                case 1:
-                    forest[rowPos - 1][colPos] = new Lynx((Lynx) creature);
-                    getCreature(rowPos - 1, colPos).setRowPosition(rowPos - 1);
-                    forest[rowPos][colPos] = null;
-                    break;
-                case 2:
-                    forest[rowPos][colPos + 1] = new Lynx((Lynx) creature);
-                    getCreature(rowPos, colPos + 1).setColPosition(colPos + 1);
-                    forest[rowPos][colPos] = null;
-                    break;
-                case 3:
-                    forest[rowPos + 1][colPos] = new Lynx((Lynx) creature);
-                    getCreature(rowPos + 1, colPos).setRowPosition(rowPos + 1);
-                    forest[rowPos][colPos] = null;
-                    break;
-                case 4:
-                    forest[rowPos][colPos - 1] = new Lynx((Lynx) creature);
-                    getCreature(rowPos, colPos - 1).setColPosition(colPos - 1);
-                    forest[rowPos][colPos] = null;
-                    break;
-            }
-
-            creature.timeSinceBreed++; //Increment breeding counter
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 

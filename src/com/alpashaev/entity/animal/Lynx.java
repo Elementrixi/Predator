@@ -46,25 +46,45 @@ public class Lynx extends Creature {
                     if (lynx.topFlag)
                         break;
 
-                    moveComplete = true;
+                    if (Forest.getCreature(coordinates[0] - 1, coordinates[1]) instanceof Rat) {
+                        Forest.forest[coordinates[0] - 1][coordinates[1]] = null;
+                        Forest.movement(Forest.getCreature(coordinates[0], coordinates[1]), 1);
+                        moveComplete = true;
+                        Forest.numberOfRats--;
+                    }
                     break;
                 case 2:
                     if (lynx.rightFlag)
                         break;
 
-                    moveComplete = true;
+                    if (Forest.getCreature(coordinates[0], coordinates[1] + 1) instanceof Rat) {
+                        Forest.forest[coordinates[0]][coordinates[1] + 1] = null;
+                        Forest.movement(Forest.getCreature(coordinates[0], coordinates[1]), 2);
+                        moveComplete = true;
+                        Forest.numberOfRats--;
+                    }
                     break;
                 case 3:
                     if (lynx.bottomFlag)
                         break;
 
-                    moveComplete = true;
+                    if (Forest.getCreature(coordinates[0] + 1, coordinates[1]) instanceof Rat) {
+                        Forest.forest[coordinates[0] + 1][coordinates[1]] = null;
+                        Forest.movement(Forest.getCreature(coordinates[0], coordinates[1]), 3);
+                        moveComplete = true;
+                        Forest.numberOfRats--;
+                    }
                     break;
                 case 4:
                     if (lynx.leftFlag)
                         break;
 
-                    moveComplete = true;
+                    if (Forest.getCreature(coordinates[0], coordinates[1] - 1) instanceof Rat) {
+                        Forest.forest[coordinates[0]][coordinates[1] - 1] = null;
+                        Forest.movement(Forest.getCreature(coordinates[0], coordinates[1]), 4);
+                        moveComplete = true;
+                        Forest.numberOfRats--;
+                    }
                     break;
             }
         }
