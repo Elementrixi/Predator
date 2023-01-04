@@ -281,7 +281,7 @@ public class SimulationManager {
             forest.printField();
             int i = 0;
             try {
-                while (Forest.numberOfRats != 0 || Forest.numberOfLynx != 0) {
+                while (Forest.numberOfRats != 0 || Forest.numberOfLynx != 0 || i != maxStep - 1) {
 
                     simulation(forest);
 
