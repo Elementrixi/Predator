@@ -8,6 +8,7 @@ import com.alpashaev.map.Forest;
 import java.util.Scanner;
 
 public class SimulationManager {
+    static int[][] data;
     public static void start(){
         simulationStarter();
     }
@@ -57,24 +58,6 @@ public class SimulationManager {
         }
     }
 
-
-    private static int[][] ratPositions(){
-        int[][] pos = new int[Forest.numberOfRats][2];
-        for (int i = 0; i < Forest.numberOfRats; i++) {
-            pos[i] = Forest.ratScanner();
-        }
-        Forest.rowColScanClear();
-        return pos;
-    }
-
-    private static int[][] lynxPositions(){
-        int[][] pos = new int[Forest.numberOfLynx][2];
-        for (int i = 0; i < Forest.numberOfLynx; i++) {
-            pos[i] = Forest.lynxScanner();
-        }
-        Forest.rowColScanClear();
-        return pos;
-    }
     public static void moveLynx(int[] coordinates) {
         int row = coordinates[0];
         int col = coordinates[1];
@@ -175,9 +158,9 @@ public class SimulationManager {
         }
     }
 
-    public static void simulation(Forest forest) throws Exception {
+    public static void simulation(Forest forest) {
         int[][] lynxPositions = new int[Forest.numberOfLynx][2];
-        lynxPositions = lynxPositions();
+        lynxPositions = Forest.lynxPositions();
         int[] position = new int[2];
 
         //Lynx movement or eat Rat if it's possible
@@ -201,7 +184,7 @@ public class SimulationManager {
             }
         }
         int[][] ratPositions = new int[Forest.numberOfRats][2];
-        ratPositions = ratPositions();
+        ratPositions = Forest.ratPositions();
 
         for (int i = 0; i < Forest.numberOfRats; i++) {
             position = ratPositions[i];
@@ -216,7 +199,7 @@ public class SimulationManager {
 
 
 //Breeding for Lynx
-        lynxPositions = lynxPositions();
+        lynxPositions = Forest.lynxPositions();
         int numberOfLynx = Forest.numberOfLynx;
         for (int i = 0; i < numberOfLynx; i++) {
             //Get lynx Coordinates
@@ -231,7 +214,7 @@ public class SimulationManager {
         }
 
 //Breeding for Rat
-        ratPositions = ratPositions();
+        ratPositions = Forest.ratPositions();
         int tempNumberOfRats = Forest.numberOfRats;
 
         for (int i = 0; i < tempNumberOfRats; i++) {
@@ -248,17 +231,38 @@ public class SimulationManager {
         }
 
 //Hunger
-        lynxPositions = lynxPositions();
+        lynxPositions = Forest.lynxPositions();
         numberOfLynx = Forest.numberOfLynx;
 
         for (int i = 0; i < numberOfLynx; i++) {
             forest.starving((Lynx) Forest.getCreature(lynxPositions[i][0], lynxPositions[i][1]));
         }
-
     }
+
+    private static void fieldDataExtended(Forest forest, int step){
+        forest.fieldData();
+        System.out.print(" Step: " + step+ "\n");
+    }
+
+    private static void fieldStatsOut(int stepsAmount){
+        System.out.println("Final statistic is:");
+        int tmp;
+        for (int i = 0; i < stepsAmount; i++) {
+            tmp=i;
+            tmp++;
+            System.out.println("Lynxes: " + data[i][0] + " Rats: " + data[i][1] + " step: " + tmp);
+        }
+    }
+
+    private static void dataCollector(int[] arr, int i){
+        data[i][0] = arr[0];
+        data[i][1] = arr[1];
+    }
+
     public static void simulationStarter() {
         {
-            int rats, lynx, maxStep;
+            int rats, lynx, maxStep, i = 0;
+            int[] arr;
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter 0 if you want to use default data if no any other number");
             if (scanner.nextInt() == 0) {
@@ -277,23 +281,18 @@ public class SimulationManager {
                 Lynx.hungerTimeMax = scanner.nextInt();
             }
             Forest forest = new Forest(rats, lynx);
-
-            forest.printField();
-            int i = 0;
-            try {
-                while (Forest.numberOfRats != 0 || Forest.numberOfLynx != 0 || i != maxStep - 1) {
-
-                    simulation(forest);
-
-                    forest.printField();
-                    i++;
-
-                    fieldPause();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("Simulation ended up at step " + i);
-            }
+            data = new int[maxStep][2];
+            do {
+                simulation(forest);
+                arr = Forest.fieldStat().clone();
+                forest.printField();
+                dataCollector(arr,i);
+                i++;
+                fieldDataExtended(forest,i);
+                fieldPause();
+            } while (Forest.numberOfRats != 0 && Forest.numberOfLynx != 0 && i != maxStep);
+            fieldStatsOut(i);
+                System.out.println("Simulation ended up due to error at step " + i);
         }
     }
 }
