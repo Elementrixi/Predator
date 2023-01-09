@@ -292,7 +292,7 @@ public class SimulationManager {
                 fieldPause();
             } while (Forest.numberOfRats != 0 && Forest.numberOfLynx != 0 && i != maxStep);
             fieldStatsOut(i);
-                System.out.println("Simulation ended up due to error at step " + i);
+                System.out.println("Simulation ended up at step " + i);
         }
     }
 }
