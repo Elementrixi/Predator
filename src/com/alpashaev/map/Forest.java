@@ -99,9 +99,9 @@ public class Forest {
     public boolean preyNear(Lynx lynx)
     {
         //Top left corner
-        if (lynx.rightFlag && lynx.leftFlag)
+        if (lynx.topFlag && lynx.leftFlag)
         {
-            if (	(getCreature(lynx.getRowPosition(), lynx.getColPosition() + 1) instanceof Rat) ||
+            if (
                     (getCreature(lynx.getRowPosition() + 1, lynx.getColPosition()) instanceof Rat) )
             {
                 return true;
@@ -115,8 +115,7 @@ public class Forest {
         //Bottom right corner
         else if (lynx.bottomFlag && lynx.rightFlag)
         {
-            if (	(getCreature(lynx.getRowPosition() - 1, lynx.getColPosition()) instanceof Rat) ||
-                    (getCreature(lynx.getRowPosition(), lynx.getColPosition() - 1) instanceof Rat) )
+            if (	(getCreature(lynx.getRowPosition() - 1, lynx.getColPosition()) instanceof Rat) )
             {
                 return true;
             }
@@ -129,8 +128,7 @@ public class Forest {
         //Top right corner
         else if (lynx.topFlag && lynx.rightFlag)
         {
-            if (	(getCreature(lynx.getRowPosition() + 1, lynx.getColPosition()) instanceof Rat) ||
-                    (getCreature(lynx.getRowPosition(), lynx.getColPosition() - 1) instanceof Rat) )
+            if ((getCreature(lynx.getRowPosition(), lynx.getColPosition() - 1) instanceof Rat) )
             {
                 return true;
             }
@@ -143,8 +141,7 @@ public class Forest {
         //Bottom left corner
         else if (lynx.bottomFlag && lynx.leftFlag)
         {
-            if (	(getCreature(lynx.getRowPosition() - 1, lynx.getColPosition()) instanceof Rat) ||
-                    (getCreature(lynx.getRowPosition(), lynx.getColPosition() + 1) instanceof Rat) )
+            if ((getCreature(lynx.getRowPosition(), lynx.getColPosition() + 1) instanceof Rat) )
             {
                 return true;
             }
@@ -156,8 +153,7 @@ public class Forest {
         //Top row
         else if (lynx.topFlag)
         {
-            if (	(getCreature(lynx.getRowPosition(), lynx.getColPosition() + 1) instanceof Rat) ||
-                    (getCreature(lynx.getRowPosition() + 1, lynx.getColPosition()) instanceof Rat) ||
+            if ((getCreature(lynx.getRowPosition() + 1, lynx.getColPosition()) instanceof Rat) ||
                     (getCreature(lynx.getRowPosition(), lynx.getColPosition() - 1) instanceof Rat) )
             {
                 return true;
@@ -172,7 +168,6 @@ public class Forest {
         else if (lynx.rightFlag)
         {
             if (	(getCreature(lynx.getRowPosition() - 1, lynx.getColPosition()) instanceof Rat) ||
-                    (getCreature(lynx.getRowPosition() + 1, lynx.getColPosition()) instanceof Rat) ||
                     (getCreature(lynx.getRowPosition(), lynx.getColPosition() - 1) instanceof Rat) )
             {
                 return true;
@@ -187,8 +182,7 @@ public class Forest {
         else if (lynx.bottomFlag)
         {
             if (	(getCreature(lynx.getRowPosition() - 1, lynx.getColPosition()) instanceof Rat) ||
-                    (getCreature(lynx.getRowPosition(), lynx.getColPosition() + 1) instanceof Rat) ||
-                    (getCreature(lynx.getRowPosition(), lynx.getColPosition() - 1) instanceof Rat) )
+                    (getCreature(lynx.getRowPosition(), lynx.getColPosition() + 1) instanceof Rat))
             {
                 return true;
             }
@@ -201,8 +195,7 @@ public class Forest {
         //Left column
         else if (lynx.leftFlag)
         {
-            if (	(getCreature(lynx.getRowPosition() - 1, lynx.getColPosition()) instanceof Rat) ||
-                    (getCreature(lynx.getRowPosition(), lynx.getColPosition() + 1) instanceof Rat) ||
+            if (	(getCreature(lynx.getRowPosition(), lynx.getColPosition() + 1) instanceof Rat) ||
                     (getCreature(lynx.getRowPosition() + 1, lynx.getColPosition()) instanceof Rat) )
             {
                 return true;
