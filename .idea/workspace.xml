@@ -19,9 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec8a8784-827c-4440-b75f-e0c8ae4f796c" name="Default Changelist" comment="Main file added">
+    <list default="true" id="ec8a8784-827c-4440-b75f-e0c8ae4f796c" name="Default Changelist" comment="output fix, useless code del">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/alpashaev/entity/animal/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alpashaev/entity/animal/Creature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/alpashaev/entity/animal/Lynx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alpashaev/entity/animal/Lynx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/alpashaev/entity/animal/Rat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alpashaev/entity/animal/Rat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/alpashaev/manager/SimulationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alpashaev/manager/SimulationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/alpashaev/map/Forest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alpashaev/map/Forest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,10 +37,17 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Elementrixi &lt;67051385+elementrixi@users.noreply.github.com&gt;" />
+        <option value="Elementrixi &lt;ilyas200904@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="main" />
@@ -49,8 +61,15 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -69,6 +88,18 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -79,7 +110,32 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1665401346548</updated>
-      <workItem from="1665401349556" duration="1648000" />
+      <workItem from="1665401349556" duration="2042000" />
+      <workItem from="1665404135652" duration="1827000" />
+      <workItem from="1666164825137" duration="2296000" />
+      <workItem from="1666352515677" duration="674000" />
+      <workItem from="1666443311046" duration="2458000" />
+      <workItem from="1667050228443" duration="622000" />
+      <workItem from="1668084871709" duration="2320000" />
+      <workItem from="1668099701995" duration="2415000" />
+      <workItem from="1668341169190" duration="2759000" />
+      <workItem from="1669367181789" duration="2841000" />
+      <workItem from="1670871846368" duration="2016000" />
+      <workItem from="1671095818758" duration="3739000" />
+      <workItem from="1671291329697" duration="2519000" />
+      <workItem from="1671293877026" duration="243000" />
+      <workItem from="1672834873580" duration="2139000" />
+      <workItem from="1672837067702" duration="148000" />
+      <workItem from="1672837247083" duration="1222000" />
+      <workItem from="1672911044466" duration="6603000" />
+      <workItem from="1672924972869" duration="5723000" />
+      <workItem from="1673274293779" duration="203000" />
+      <workItem from="1673278260245" duration="1007000" />
+      <workItem from="1673615354880" duration="406000" />
+      <workItem from="1673877659644" duration="3541000" />
+      <workItem from="1673881964856" duration="1987000" />
+      <workItem from="1675415696503" duration="2387000" />
+      <workItem from="1675767548000" duration="12000" />
     </task>
     <task id="LOCAL-00001" summary="Main file added">
       <created>1665401631358</created>
@@ -88,7 +144,112 @@
       <option name="project" value="LOCAL" />
       <updated>1665401631358</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="git commit -m&quot;added creature class, consrtuctors, getters/setters&quot;">
+      <created>1665403095533</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1665403095533</updated>
+    </task>
+    <task id="LOCAL-00003" summary="git commit -m&quot;added row/col setters logic&quot;">
+      <created>1665404359157</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1665404359157</updated>
+    </task>
+    <task id="LOCAL-00004" summary="git commit -m&quot;added and implem row/col setters logic&quot;">
+      <created>1665404424482</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1665404424482</updated>
+    </task>
+    <task id="LOCAL-00005" summary="created Lynx and Rat classes with parent constr logic">
+      <created>1665405199577</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1665405199577</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Forest class with basic data">
+      <created>1666165984768</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1666165984768</updated>
+    </task>
+    <task id="LOCAL-00007" summary="SimulationManager with test for beginning of simul">
+      <created>1666167604343</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1666167604343</updated>
+    </task>
+    <task id="LOCAL-00008" summary="var rename">
+      <created>1666444429191</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1666444429191</updated>
+    </task>
+    <task id="LOCAL-00009" summary="test minor rework">
+      <created>1668343336927</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1668343336927</updated>
+    </task>
+    <task id="LOCAL-00010" summary="default data method/polymorph">
+      <created>1668343699201</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1668343699201</updated>
+    </task>
+    <task id="LOCAL-00011" summary="eat method Lynx begin impl">
+      <created>1668343726121</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1668343726121</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Forest.java added important methods (map creating, creature placing, moving, methods for simulation)">
+      <created>1671097001490</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1671097001490</updated>
+    </task>
+    <task id="LOCAL-00013" summary="scanning for creatures, move, simul methods">
+      <created>1671293953943</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1671293953943</updated>
+    </task>
+    <task id="LOCAL-00014" summary="simul,lynxEat methods done">
+      <created>1672838465542</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1672838465542</updated>
+    </task>
+    <task id="LOCAL-00015" summary="some changes">
+      <created>1673274400899</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1673274400899</updated>
+    </task>
+    <task id="LOCAL-00016" summary="output fix, useless code del">
+      <created>1673279258883</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1673279258883</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -99,7 +260,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -107,20 +270,71 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Main file added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Main file added" />
+    <MESSAGE value="git commit -m&quot;added creature class, consrtuctors, getters/setters&quot;" />
+    <MESSAGE value="git commit -m&quot;added row/col setters logic&quot;" />
+    <MESSAGE value="git commit -m&quot;added and implem row/col setters logic&quot;" />
+    <MESSAGE value="created Lynx and Rat classes with parent constr logic" />
+    <MESSAGE value="Forest class with basic data" />
+    <MESSAGE value="SimulationManager with test for beginning of simul" />
+    <MESSAGE value="var rename" />
+    <MESSAGE value="test minor rework" />
+    <MESSAGE value="default data method/polymorph" />
+    <MESSAGE value="eat method Lynx begin impl" />
+    <MESSAGE value="Forest.java added important methods (map creating, creature placing, moving, methods for simulation)" />
+    <MESSAGE value="scanning for creatures, move, simul methods" />
+    <MESSAGE value="simul,lynxEat methods done" />
+    <MESSAGE value="some changes" />
+    <MESSAGE value="output fix, useless code del" />
+    <option name="LAST_COMMIT_MESSAGE" value="output fix, useless code del" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="155" key="#com.intellij.ide.util.MemberChooser" timestamp="1665402676063">
+    <state x="0" y="35" key="CommitChangelistDialog2" timestamp="1684854700854">
       <screen x="0" y="43" width="1536" height="821" />
     </state>
-    <state x="574" y="155" key="#com.intellij.ide.util.MemberChooser/0.43.1536.821@0.43.1536.821" timestamp="1665402676063" />
-    <state x="550" y="167" key="git4idea.branch.GitSmartOperationDialog" timestamp="1665402974099">
+    <state x="0" y="35" key="CommitChangelistDialog2/0.43.1536.821@0.43.1536.821" timestamp="1684854700854" />
+    <state width="1493" height="260" key="GridCell.Tab.0.bottom" timestamp="1683816749118">
       <screen x="0" y="43" width="1536" height="821" />
     </state>
-    <state x="550" y="167" key="git4idea.branch.GitSmartOperationDialog/0.43.1536.821@0.43.1536.821" timestamp="1665402974099" />
-    <state x="585" y="348" key="git4idea.ui.GitResetDialog" timestamp="1665402014568">
+    <state width="1493" height="260" key="GridCell.Tab.0.bottom/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
+    <state width="1493" height="260" key="GridCell.Tab.0.center" timestamp="1683816749118">
       <screen x="0" y="43" width="1536" height="821" />
     </state>
-    <state x="585" y="348" key="git4idea.ui.GitResetDialog/0.43.1536.821@0.43.1536.821" timestamp="1665402014568" />
+    <state width="1493" height="260" key="GridCell.Tab.0.center/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
+    <state width="1493" height="260" key="GridCell.Tab.0.left" timestamp="1683816749118">
+      <screen x="0" y="43" width="1536" height="821" />
+    </state>
+    <state width="1493" height="260" key="GridCell.Tab.0.left/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
+    <state width="1493" height="260" key="GridCell.Tab.0.right" timestamp="1683816749118">
+      <screen x="0" y="43" width="1536" height="821" />
+    </state>
+    <state width="1493" height="260" key="GridCell.Tab.0.right/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
+    <state width="1493" height="260" key="GridCell.Tab.1.bottom" timestamp="1683816749118">
+      <screen x="0" y="43" width="1536" height="821" />
+    </state>
+    <state width="1493" height="260" key="GridCell.Tab.1.bottom/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
+    <state width="1493" height="260" key="GridCell.Tab.1.center" timestamp="1683816749118">
+      <screen x="0" y="43" width="1536" height="821" />
+    </state>
+    <state width="1493" height="260" key="GridCell.Tab.1.center/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
+    <state width="1493" height="260" key="GridCell.Tab.1.left" timestamp="1683816749118">
+      <screen x="0" y="43" width="1536" height="821" />
+    </state>
+    <state width="1493" height="260" key="GridCell.Tab.1.left/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
+    <state width="1493" height="260" key="GridCell.Tab.1.right" timestamp="1683816749118">
+      <screen x="0" y="43" width="1536" height="821" />
+    </state>
+    <state width="1493" height="260" key="GridCell.Tab.1.right/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
+    <state x="277" y="43" key="SettingsEditor" timestamp="1684854559231">
+      <screen x="0" y="43" width="1536" height="821" />
+    </state>
+    <state x="277" y="43" key="SettingsEditor/0.43.1536.821@0.43.1536.821" timestamp="1684854559231" />
+    <state x="93" y="136" width="1350" height="635" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1683382037000">
+      <screen x="0" y="43" width="1536" height="821" />
+    </state>
+    <state x="93" y="136" width="1350" height="635" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.43.1536.821@0.43.1536.821" timestamp="1683382037000" />
+    <state x="333" y="191" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1683813811484">
+      <screen x="0" y="43" width="1536" height="821" />
+    </state>
+    <state x="333" y="191" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.43.1536.821@0.43.1536.821" timestamp="1683813811484" />
   </component>
 </project>

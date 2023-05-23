@@ -77,7 +77,7 @@ public class Creature {
             this.topFlag = true;
         }
 
-        else if(rowPosition >= 19)
+        else if(rowPosition >= 199)
         {
             this.bottomFlag = true;
         }
@@ -94,7 +94,7 @@ public class Creature {
             this.leftFlag = true;
         }
 
-        else if(colPosition >= 19)
+        else if(colPosition >= 199)
         {
             this.rightFlag = true;
         }
