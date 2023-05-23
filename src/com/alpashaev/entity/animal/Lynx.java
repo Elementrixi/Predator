@@ -28,7 +28,7 @@ public class Lynx extends Creature {
     @Override
     protected void defaultData() {
         this.symbol = 'L'; //Lynx symbol will be L
-        this.breedingPoint = 8; // at what point an instance of Lynx being will breed
+        this.breedingPoint = 9; // at what point an instance of Lynx being will breed
         this.timeSinceEat = 0;
     }
 

@@ -5,15 +5,30 @@ import com.alpashaev.entity.animal.Lynx;
 import com.alpashaev.entity.animal.Rat;
 import com.alpashaev.map.Forest;
 
-import java.util.Scanner;
+import javafx.animation.AnimationTimer;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
-public class SimulationManager {
+public class SimulationManager extends Application {
     static int[][] data;
-    public static void start(){
-        simulationStarter();
-    }
+    int COLUMNS = 200;
+    int ROWS = 200;
 
-    public static void test(){
+    public static void test() {
         try {
             int rats = 10, lynx = 10, rowL = 10, colL = 10, rowR = 20, colR = 20;
             Lynx.hungerTimeMax = 7;
@@ -33,29 +48,19 @@ public class SimulationManager {
             System.out.println("Lynx2: row " + lynx2.rowPosition + "  col " + lynx2.colPosition + " breeding point " + lynx2.breedingPoint + "timeSinceBreed" + lynx2.timeSinceBreed
                     + " hungerTimeMax " + Lynx.hungerTimeMax + " timeSinceEat " + lynx2.timeSinceEat + " imputed amount " + lynx + "\n");
 
-            if (propertiesEqual(rat2,rat3)) System.out.println("Rat2 and Rat3 have equal data");
+            if (propertiesEqual(rat2, rat3)) System.out.println("Rat2 and Rat3 have equal data");
             else System.out.println("False");
-            if (propertiesEqual(lynx2,lynx3)) System.out.println("Lynx2 and Lynx3 have equal data");
+            if (propertiesEqual(lynx2, lynx3)) System.out.println("Lynx2 and Lynx3 have equal data");
             else System.out.println("False");
 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error SimulationManager");
         }
     }
 
-    private static boolean propertiesEqual(Creature creature1, Creature creature2){
+    private static boolean propertiesEqual(Creature creature1, Creature creature2) {
         return creature1.rowPosition == creature2.rowPosition && creature1.colPosition == creature2.colPosition
                 && creature1.timeSinceBreed == creature2.timeSinceBreed;
-    }
-
-    private static void fieldPause(){
-        try {
-            Thread.sleep(500);
-            System.out.println("Next step");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            System.exit(-2);
-        }
     }
 
     public static void moveLynx(int[] coordinates) {
@@ -168,7 +173,10 @@ public class SimulationManager {
             position = lynxPositions[i];
 
             //Error catching
-            if (position[0] < 0 || position[1] < 0 || position[0] > 19 || position[1] > 19) System.exit(-1);
+            if (position[0] < 0 || position[1] < 0 || position[0] > (Forest.ROWS - 1) || position[1] > (Forest.COLUMNS - 1)) {
+                System.out.println("Sim error");
+                System.exit(-1);
+            }
 
             //Eating
             if (forest.preyNear((Lynx) Forest.getCreature(position))) {
@@ -239,60 +247,173 @@ public class SimulationManager {
         }
     }
 
-    private static void fieldDataExtended(Forest forest, int step){
-        forest.fieldData();
-        System.out.print(" Step: " + step+ "\n");
-    }
-
-    private static void fieldStatsOut(int stepsAmount){
-        System.out.println("Final statistic is:");
-        int tmp;
+    private static void fieldStatsOut(int stepsAmount) {
+        Stage stage1 = new Stage();
+        stage1.setTitle("Statistics");
+        VBox vbox = new VBox();
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(vbox);
+        Scene scene = new Scene(scrollPane, 300, 400);
+        int tmp, minL = Integer.MAX_VALUE, maxL = -1, minR = Integer.MAX_VALUE, maxR = -1;
         for (int i = 0; i < stepsAmount; i++) {
-            tmp=i;
+            tmp = i;
             tmp++;
-            System.out.println("Lynxes: " + data[i][0] + " Rats: " + data[i][1] + " step: " + tmp);
+            if (minL > data[i][0]) minL = data[i][0];
+            else if (maxL < data[i][0]) maxL = data[i][0];
+
+            if (minR > data[i][1]) minR = data[i][1];
+            else if (maxR < data[i][1]) maxR = data[i][1];
+            String str = "Lynxes: " + data[i][0] + " Rats: " + data[i][1] + " step: " + tmp;
+            Label label = new Label(str);
+            vbox.getChildren().add(label);
         }
+        String str = "MaxL: " + maxL + " minL: " + minL + " maxR: " + maxR + " minR: " + minR;
+        Label label = new Label(str);
+        vbox.getChildren().add(label);
+        stage1.setScene(scene);
+        stage1.show();
     }
 
-    private static void dataCollector(int[] arr, int i){
+    private static void dataCollector(int[] arr, int i) {
         data[i][0] = arr[0];
         data[i][1] = arr[1];
     }
 
-    public static void simulationStarter() {
-        {
-            int rats, lynx, maxStep, i = 0;
-            int[] arr;
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter 0 if you want to use default data if no any other number");
-            if (scanner.nextInt() == 0) {
-                rats = 50;
-                lynx = 50;
-                Lynx.hungerTimeMax = 6;
-                maxStep = 40;
+    public void startAll(Stage stage) throws Exception {
+//        simulationStarter();
+        start(stage);
+    }
 
-            } else {
-                System.out.println("Number of rats, lynxes, max step amount");
-                rats = scanner.nextInt();
-                lynx = scanner.nextInt();
-                maxStep = scanner.nextInt();
-
-                System.out.println("Hunger time max for lynxes");
-                Lynx.hungerTimeMax = scanner.nextInt();
+    private void textParser(TextField textField) {
+        textField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    textField.setText(newValue.replaceAll("[\\D]", ""));
+                }
             }
-            Forest forest = new Forest(rats, lynx);
-            data = new int[maxStep][2];
-            do {
-                simulation(forest);
-                arr = Forest.fieldStat().clone();
-                forest.printField();
-                dataCollector(arr,i);
-                i++;
-                fieldDataExtended(forest,i);
-                fieldPause();
-            } while (Forest.numberOfRats != 0 && Forest.numberOfLynx != 0 && i != maxStep);
-            fieldStatsOut(i);
-                System.out.println("Simulation ended up at step " + i);
+        });
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        int[] rats = new int[1];
+        int[] lynx = new int[1];
+        int[] hungerTime = new int[1];
+        int[] maxStep = new int[1];
+
+        VBox vpane = new VBox();
+        StackPane stackPane = new StackPane();
+
+        ScrollPane scrollPane = new ScrollPane();
+        GridPane gridPane = new GridPane();
+        scrollPane.setContent(gridPane);
+
+        Scene scene = new Scene(vpane, 300, 300);
+        Scene scene1 = new Scene(scrollPane, 1500, 750);
+
+        Stage stage1 = new Stage();
+        stage1.setTitle("Simulation");
+
+        Label label = new Label("Rats");
+        TextField ratField = new TextField();
+        Label label1 = new Label("Lynx");
+        TextField lynxField = new TextField();
+        Label label2 = new Label("Hunger time");
+        TextField hungerTimeField = new TextField();
+        Label label3 = new Label("Max step");
+        TextField maxStepField = new TextField();
+
+        Button buttonSet = new Button("Set");
+        Button buttonDefaultData = new Button("Default data");
+        Button buttonStart = new Button("Start");
+        Button buttonClose = new Button("Close");
+
+        vpane.getChildren().addAll(label, ratField, label1, lynxField, label2, hungerTimeField, label3, maxStepField, buttonSet, buttonDefaultData, buttonStart);
+
+        textParser(ratField);
+        textParser(lynxField);
+        textParser(hungerTimeField);
+        textParser(maxStepField);
+
+        final int[][] arr = new int[1][1];
+        final int[] i = {0};
+        Forest[] forest = new Forest[1];
+        buttonSet.setOnAction(e -> {
+            rats[0] = Integer.parseInt(ratField.getText());
+            lynx[0] = Integer.parseInt(lynxField.getText());
+            hungerTime[0] = Integer.parseInt(hungerTimeField.getText());
+            maxStep[0] = Integer.parseInt(maxStepField.getText());
+            System.out.println("Rats: " + rats[0] + " Lynx: " + lynx[0] + " Hunger time: " + hungerTime[0] + " Max step: " + maxStep[0]);
+            Lynx.hungerTimeMax = hungerTime[0];
+            forest[0] = new Forest(rats[0], lynx[0]);
+            data = new int[maxStep[0]][2];
+        });
+
+        buttonDefaultData.setOnAction(e -> {
+            rats[0] = 100;
+            lynx[0] = 50;
+            hungerTime[0] = 8;
+            maxStep[0] = 15;
+            Lynx.hungerTimeMax = hungerTime[0];
+            forest[0] = new Forest(rats[0], lynx[0]);
+            data = new int[maxStep[0]][2];
+            System.out.println("Rats: " + rats[0] + " Lynx: " + lynx[0] + " Hunger time: " + hungerTime[0] + " Max step: " + maxStep[0]);
+        });
+
+        buttonStart.setOnAction(e -> {
+            AnimationTimer animationTimer = new AnimationTimer() {
+                @Override
+                public void handle(long now) {
+                    if (Forest.numberOfRats != 0 && Forest.numberOfLynx != 0 && i[0] != maxStep[0]) {
+                        simulation(forest[0]);
+                        arr[0] = Forest.fieldStat().clone();
+                        updateGrid(gridPane);
+                        dataCollector(arr[0], i[0]);
+                        System.out.println(i[0]++);
+                    } else {
+                        fieldStatsOut(i[0]);
+                        System.out.println("Simulation ended up at step " + i[0]);
+                        stop();
+                    }
+                }
+            };
+
+            animationTimer.start();
+
+            stage1.setScene(scene1);
+            stage1.show();
+        });
+
+        buttonClose.setOnAction(e -> stage1.close());
+
+        stage.setScene(scene);
+        stage.show();
+        stage.setOnCloseRequest(e -> Platform.exit());
+    }
+
+    private void updateGrid(GridPane gridPane) {
+        gridPane.getChildren().clear();
+        for (int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLUMNS; col++) {
+                StackPane cell = new StackPane();
+                cell.setPrefSize(10, 10);
+                Rectangle rectangle = new Rectangle(10, 10, Color.GREEN);
+                rectangle.setStroke(Color.BLACK);
+                gridPane.add(cell, col, row);
+                if (Forest.forest[row][col] != null) {
+                    Circle circle = new Circle(5, Color.RED);
+                    if (Forest.forest[row][col] instanceof Rat) {
+                        circle = new Circle(5, Color.BLUE);
+                    }
+                    cell.getChildren().addAll(circle);
+                } else {
+                    cell.getChildren().add(rectangle);
+                }
+            }
         }
     }
+
 }
+

@@ -9,7 +9,8 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Forest {
-    public static Creature[][] forest = new Creature[20][20];
+    public static final int ROWS = 200, COLUMNS = 200;
+    public static Creature[][] forest = new Creature[ROWS][COLUMNS];
     public static int numberOfRats;
     public static int numberOfLynx;
     public Random randomNumGen = new Random();
@@ -17,191 +18,141 @@ public class Forest {
     public static int colScan = 0;
 
 
-    public Forest()
-    {
+    public Forest() {
         numberOfRats = 100;
         numberOfLynx = 5;
         initializeBoard(numberOfRats, numberOfLynx);
     }
 
-    public Forest(int rats, int lynx)
-    {
+    public Forest(int rats, int lynx) {
         numberOfRats = rats;
         numberOfLynx = lynx;
         initializeBoard(numberOfRats, numberOfLynx);
 
     }
 
-    public void initializeBoard(int numRat, int numLynx)
-    {
-        for (int i = 0; i < numRat; i++)
-        {
+    public void initializeBoard(int numRat, int numLynx) {
+        for (int i = 0; i < numRat; i++) {
             placeCreature(new Rat());
         }
 
-        for (int i = 0; i < numLynx; i++)
-        {
+        for (int i = 0; i < numLynx; i++) {
             placeCreature(new Lynx());
         }
     }
 
-    public boolean isTaken(int row, int col)
-    {
+    public boolean isTaken(int row, int col) {
         return Forest.forest[row][col] != null;
 
     }
 
-    public static void rowColScanClear(){
+    public static void rowColScanClear() {
         rowScan = 0;
         colScan = 0;
     }
 
-    public void placeCreature(Creature creature)
-    {
-        int row = randomNumGen.nextInt(20);
-        int col = randomNumGen.nextInt(20);
+    public void placeCreature(Creature creature) {
+        int row = randomNumGen.nextInt(ROWS);
+        int col = randomNumGen.nextInt(COLUMNS);
 
-        while (this.isTaken(row, col))
-        {
-            row = randomNumGen.nextInt(20);
-            col = randomNumGen.nextInt(20);
+        while (this.isTaken(row, col)) {
+            row = randomNumGen.nextInt(ROWS);
+            col = randomNumGen.nextInt(COLUMNS);
         }
 
-        if(creature instanceof Rat)
-        {
+        if (creature instanceof Rat) {
             forest[row][col] = new Rat(row, col);
-        }
-
-        else if(creature instanceof Lynx)
-        {
-            forest[row][col]= new Lynx(row, col);
-        }
-
-        else
-        {
+        } else if (creature instanceof Lynx) {
+            forest[row][col] = new Lynx(row, col);
+        } else {
             System.out.println("PlaceCreature error!");
             System.exit(-1);
         }
     }
 
 
-    public static Creature getCreature(int row, int col)
-    {
+    public static Creature getCreature(int row, int col) {
         if (row < 0 || col < 0) return null;
         return forest[row][col];
     }
 
-    public static Creature getCreature(int[] position)
-    {
+    public static Creature getCreature(int[] position) {
         return forest[position[0]][position[1]];
     }
 
-    public boolean preyNear(Lynx lynx)
-    {
+    public boolean preyNear(Lynx lynx) {
         //Top left corner
-        if (lynx.topFlag && lynx.leftFlag)
-        {
+        if (lynx.topFlag && lynx.leftFlag) {
             if (
-                    (getCreature(lynx.getRowPosition() + 1, lynx.getColPosition()) instanceof Rat) )
-            {
+                    (getCreature(lynx.getRowPosition() + 1, lynx.getColPosition()) instanceof Rat)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
         //Bottom right corner
-        else if (lynx.bottomFlag && lynx.rightFlag)
-        {
-            if (	(getCreature(lynx.getRowPosition() - 1, lynx.getColPosition()) instanceof Rat) )
-            {
+        else if (lynx.bottomFlag && lynx.rightFlag) {
+            if ((getCreature(lynx.getRowPosition() - 1, lynx.getColPosition()) instanceof Rat)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
         //Top right corner
-        else if (lynx.topFlag && lynx.rightFlag)
-        {
-            if ((getCreature(lynx.getRowPosition(), lynx.getColPosition() - 1) instanceof Rat) )
-            {
+        else if (lynx.topFlag && lynx.rightFlag) {
+            if ((getCreature(lynx.getRowPosition(), lynx.getColPosition() - 1) instanceof Rat)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
         //Bottom left corner
-        else if (lynx.bottomFlag && lynx.leftFlag)
-        {
-            if ((getCreature(lynx.getRowPosition(), lynx.getColPosition() + 1) instanceof Rat) )
-            {
+        else if (lynx.bottomFlag && lynx.leftFlag) {
+            if ((getCreature(lynx.getRowPosition(), lynx.getColPosition() + 1) instanceof Rat)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
         //Top row
-        else if (lynx.topFlag)
-        {
+        else if (lynx.topFlag) {
             if ((getCreature(lynx.getRowPosition() + 1, lynx.getColPosition()) instanceof Rat) ||
-                    (getCreature(lynx.getRowPosition(), lynx.getColPosition() - 1) instanceof Rat) )
-            {
+                    (getCreature(lynx.getRowPosition(), lynx.getColPosition() - 1) instanceof Rat)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
         //Right column
-        else if (lynx.rightFlag)
-        {
-            if (	(getCreature(lynx.getRowPosition() - 1, lynx.getColPosition()) instanceof Rat) ||
-                    (getCreature(lynx.getRowPosition(), lynx.getColPosition() - 1) instanceof Rat) )
-            {
+        else if (lynx.rightFlag) {
+            if ((getCreature(lynx.getRowPosition() - 1, lynx.getColPosition()) instanceof Rat) ||
+                    (getCreature(lynx.getRowPosition(), lynx.getColPosition() - 1) instanceof Rat)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
         //Bottom row
-        else if (lynx.bottomFlag)
-        {
-            if (	(getCreature(lynx.getRowPosition() - 1, lynx.getColPosition()) instanceof Rat) ||
-                    (getCreature(lynx.getRowPosition(), lynx.getColPosition() + 1) instanceof Rat))
-            {
+        else if (lynx.bottomFlag) {
+            if ((getCreature(lynx.getRowPosition() - 1, lynx.getColPosition()) instanceof Rat) ||
+                    (getCreature(lynx.getRowPosition(), lynx.getColPosition() + 1) instanceof Rat)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
         //Left column
-        else if (lynx.leftFlag)
-        {
-            if (	(getCreature(lynx.getRowPosition(), lynx.getColPosition() + 1) instanceof Rat) ||
-                    (getCreature(lynx.getRowPosition() + 1, lynx.getColPosition()) instanceof Rat) )
-            {
+        else if (lynx.leftFlag) {
+            if ((getCreature(lynx.getRowPosition(), lynx.getColPosition() + 1) instanceof Rat) ||
+                    (getCreature(lynx.getRowPosition() + 1, lynx.getColPosition()) instanceof Rat)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
@@ -213,7 +164,7 @@ public class Forest {
                     (getCreature(lynx.getRowPosition(), lynx.getColPosition() - 1) instanceof Rat);
     }
 
-    public static int[][] ratPositions(){
+    public static int[][] ratPositions() {
         int[][] pos = new int[numberOfRats][2];
         for (int i = 0; i < numberOfRats; i++) {
             pos[i] = ratScanner();
@@ -222,7 +173,7 @@ public class Forest {
         return pos;
     }
 
-    public static int[][] lynxPositions(){
+    public static int[][] lynxPositions() {
         int[][] pos = new int[numberOfLynx][2];
         for (int i = 0; i < numberOfLynx; i++) {
             pos[i] = lynxScanner();
@@ -231,123 +182,90 @@ public class Forest {
         return pos;
     }
 
-    public boolean emptyCellNear(Creature creature)
-    {
+    public boolean emptyCellNear(Creature creature) {
         //Top left corner
-        if (creature.topFlag && creature.leftFlag)
-        {
-            if (	(getCreature(creature.getRowPosition(), creature.getColPosition() + 1) == null) ||
-                    (getCreature(creature.getRowPosition() + 1, creature.getColPosition()) == null) )
-            {
+        if (creature.topFlag && creature.leftFlag) {
+            if ((getCreature(creature.getRowPosition(), creature.getColPosition() + 1) == null) ||
+                    (getCreature(creature.getRowPosition() + 1, creature.getColPosition()) == null)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
         //Bottom right corner
-        else if (creature.bottomFlag && creature.rightFlag)
-        {
+        else if (creature.bottomFlag && creature.rightFlag) {
             if ((getCreature(creature.getRowPosition() - 1, creature.getColPosition()) == null) ||
-                    (getCreature(creature.getRowPosition(), creature.getColPosition() - 1) == null) )
-            {
+                    (getCreature(creature.getRowPosition(), creature.getColPosition() - 1) == null)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
         //Top right corner
-        else if (creature.topFlag && creature.rightFlag)
-        {
+        else if (creature.topFlag && creature.rightFlag) {
             if ((getCreature(creature.getRowPosition() + 1, creature.getColPosition()) == null) ||
-                    (getCreature(creature.getRowPosition(), creature.getColPosition() - 1) == null) )
-            {
+                    (getCreature(creature.getRowPosition(), creature.getColPosition() - 1) == null)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
         //Bottom left corner
-        else if (creature.bottomFlag && creature.leftFlag)
-        {
+        else if (creature.bottomFlag && creature.leftFlag) {
             if ((getCreature(creature.getRowPosition() - 1, creature.getColPosition()) == null) ||
-                    (getCreature(creature.getRowPosition(), creature.getColPosition() + 1) == null) )
-            {
+                    (getCreature(creature.getRowPosition(), creature.getColPosition() + 1) == null)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
         //Top row
-        else if (creature.topFlag)
-        {
+        else if (creature.topFlag) {
             if (
                     (getCreature(creature.getRowPosition(), creature.getColPosition() + 1) == null) ||
                             (getCreature(creature.getRowPosition() + 1, creature.getColPosition()) == null) ||
-                            (getCreature(creature.getRowPosition(), creature.getColPosition() - 1) == null) )
-            {
+                            (getCreature(creature.getRowPosition(), creature.getColPosition() - 1) == null)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
         //Right column
-        else if (creature.rightFlag)
-        {
+        else if (creature.rightFlag) {
             if (
                     (getCreature(creature.getRowPosition() - 1, creature.getColPosition()) == null) ||
                             (getCreature(creature.getRowPosition() + 1, creature.getColPosition()) == null) ||
-                            (getCreature(creature.getRowPosition(), creature.getColPosition() - 1) == null) )
-            {
+                            (getCreature(creature.getRowPosition(), creature.getColPosition() - 1) == null)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
         //Bottom row
-        else if (creature.bottomFlag)
-        {
+        else if (creature.bottomFlag) {
             if (
                     (getCreature(creature.getRowPosition() - 1, creature.getColPosition()) == null) ||
                             (getCreature(creature.getRowPosition(), creature.getColPosition() + 1) == null) ||
-                            (getCreature(creature.getRowPosition(), creature.getColPosition() - 1) == null) )
-            {
+                            (getCreature(creature.getRowPosition(), creature.getColPosition() - 1) == null)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
         //Left column
-        else if (creature.leftFlag)
-        {
+        else if (creature.leftFlag) {
             if (
                     (getCreature(creature.getRowPosition() - 1, creature.getColPosition()) == null) ||
                             (getCreature(creature.getRowPosition(), creature.getColPosition() + 1) == null) ||
-                            (getCreature(creature.getRowPosition() + 1, creature.getColPosition()) == null) )
-            {
+                            (getCreature(creature.getRowPosition() + 1, creature.getColPosition()) == null)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
@@ -359,81 +277,32 @@ public class Forest {
                     (getCreature(creature.getRowPosition(), creature.getColPosition() - 1) == null);
     }
 
-
-    public void printField()
-    {
-        //Top row border
-        System.out.println("  &&&&&&&&&&&&&&&&&&&&&& ");
-
-        for(int i = 0; i < forest.length; i++)
-        {
-            //Left edge
-            System.out.printf("%2d|", i);
-
-            for(int j = 0; j < forest[i].length; j++)
-            {
-                //Print whitespace if empty cell
-                if (forest[i][j] == null)
-                {
-                    System.out.print("-");
-                }
-
-                //Print symbol
-                else
-                {
-                    System.out.print(forest[i][j].symbol);
-                }
-            }
-            //Right edge border
-            System.out.print("|");
-
-            //Prevent printing last empty line
-            if (i < forest.length - 1)
-            {
-                System.out.println();
-            }
-        }
-        //Bottom row border
-        System.out.println("\n&&&&&&&&&&&&&&&&&&&&&& ");
-
-    }
-
-    public void fieldData(){
-        System.out.print("Number of Rats: " + numberOfRats);
-        System.out.print(" Number of Lynxes: " + numberOfLynx);
-    }
-
-    public static int[] fieldStat(){
+    public static int[] fieldStat() {
         int[] arr = new int[2];
         arr[0] = numberOfLynx;
         arr[1] = numberOfRats;
         return arr;
     }
 
-    public void removeCreature(int row, int col)
-    {
-        if (forest[row][col] == null)
-        {
+    public void removeCreature(int row, int col) {
+        if (forest[row][col] == null) {
             System.out.println("Error: tried to remove a creature");
             System.exit(0);
         }
 
-        if(forest[row][col] instanceof Rat)
-        {
+        if (forest[row][col] instanceof Rat) {
             numberOfRats--;
         }
 
-        if(forest[row][col] instanceof Lynx)
-        {
+        if (forest[row][col] instanceof Lynx) {
             numberOfLynx--;
         }
 
         forest[row][col] = null;
     }
 
-    public static Integer[] randomDirections()
-    {
-        Integer[] directionArray = new Integer[] {1, 2, 3, 4};
+    public static Integer[] randomDirections() {
+        Integer[] directionArray = new Integer[]{1, 2, 3, 4};
 
         Collections.shuffle(Arrays.asList(directionArray));
 
@@ -441,25 +310,18 @@ public class Forest {
     }
 
 
-    public static int[] ratScanner()
-    {
-        for (int j = colScan; j < 20; j++)
-        {
+    public static int[] ratScanner() {
+        for (int j = colScan; j < COLUMNS; j++) {
             //Finish partially completed row
-            if (forest[rowScan][j] instanceof Rat)
-            {
+            if (forest[rowScan][j] instanceof Rat) {
                 //Check last column
-                if (colScan >= 19)
-                {
+                if (colScan >= COLUMNS - 1) {
                     colScan = 0;
                     rowScan++;
-                    return new int[] {rowScan - 1, 19};
-                }
-
-                else
-                {
+                    return new int[]{rowScan - 1, COLUMNS - 1};
+                } else {
                     colScan = j + 1;
-                    return new int[] {rowScan, j};
+                    return new int[]{rowScan, j};
                 }
             }
         }
@@ -467,28 +329,19 @@ public class Forest {
         rowScan++;
         colScan = 0;
 
-        for (int i = rowScan; i < 20; i++)
-        {
-            for (int j = colScan; j < 20; j++)
-            {
-                if (forest[i][j] instanceof Rat)
-                {
-                    if (j >= 19)
-                    {
+        for (int i = rowScan; i < ROWS; i++) {
+            for (int j = colScan; j < COLUMNS; j++) {
+                if (forest[i][j] instanceof Rat) {
+                    if (j >= COLUMNS - 1) {
                         colScan = 0;
                         rowScan++;
-                        return new int[] {i, 19};
-                    }
-                    else
-                    {
+                        return new int[]{i, COLUMNS - 1};
+                    } else {
                         colScan = j + 1;
-                        return new int[] {i, j};
+                        return new int[]{i, j};
                     }
 
-                }
-
-                else if (j >= 19)
-                {
+                } else if (j >= COLUMNS - 1) {
                     colScan = 0;
                     rowScan++;
                 }
@@ -497,27 +350,21 @@ public class Forest {
 
         rowScan = 0;
         colScan = 0;
-        return new int[] {-1, -1};
+        return new int[]{-1, -1};
     }
 
-    public static int[] lynxScanner()
-    {
-        for (int j = colScan; j < 20; j++)
-        {
+    public static int[] lynxScanner() {
+        for (int j = colScan; j < COLUMNS; j++) {
             //Finish partially completed row
-            if (forest[rowScan][j] instanceof Lynx)
-            {
+            if (forest[rowScan][j] instanceof Lynx) {
                 //Check last column
-                if (colScan >= 19)
-                {
+                if (colScan >= COLUMNS - 1) {
                     colScan = 0;
                     rowScan++;
-                    return new int[] {rowScan - 1, 19};
-                }
-                else
-                {
+                    return new int[]{rowScan - 1, COLUMNS - 1};
+                } else {
                     colScan = j + 1;
-                    return new int[] {rowScan, j};
+                    return new int[]{rowScan, j};
                 }
             }
         }
@@ -525,23 +372,16 @@ public class Forest {
         rowScan++;
         colScan = 0;
 
-        for (int i = rowScan; i < 20; i++)
-        {
-            for (int j = colScan; j < 20; j++)
-            {
-                if (forest[i][j] instanceof Lynx)
-                {
-                    if (j >= 19)
-                    {
+        for (int i = rowScan; i < ROWS; i++) {
+            for (int j = colScan; j < COLUMNS; j++) {
+                if (forest[i][j] instanceof Lynx) {
+                    if (j >= COLUMNS - 1) {
                         colScan = 0;
                         rowScan++;
-                        return new int[] {i, 19};
-                    }
-
-                    else
-                    {
+                        return new int[]{i, COLUMNS - 1};
+                    } else {
                         colScan = j + 1;
-                        return new int[] {i, j};
+                        return new int[]{i, j};
                     }
                 }
             }
@@ -552,11 +392,10 @@ public class Forest {
 
         rowScan = 0;
         colScan = 0;
-        return new int[] {-1, -1};
+        return new int[]{-1, -1};
     }
 
-    public static void movement(Creature creature, int direction)
-    {
+    public static void movement(Creature creature, int direction) {
         try {
             int rowPos = creature.getRowPosition();
             int colPos = creature.getColPosition();
@@ -610,16 +449,14 @@ public class Forest {
 
                 creature.timeSinceBreed++; //Increment counter for breeding
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void breed(Creature creature)
-    {
+    public void breed(Creature creature) {
         //Check breeding point and open cell
-        if ((creature.timeSinceBreed == creature.breedingPoint) && this.emptyCellNear(creature))
-        {
+        if ((creature.timeSinceBreed == creature.breedingPoint) && this.emptyCellNear(creature)) {
             int row = creature.getRowPosition();
             int col = creature.getColPosition();
 
@@ -716,7 +553,7 @@ public class Forest {
                     creature.timeSinceBreed = 0;
                     numberOfLynx++;
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error in breed!");
                 System.exit(-1);
             }
@@ -724,12 +561,9 @@ public class Forest {
     }
 
 
-    public void starving(Lynx lynx)
-    {
-        if (lynx.timeSinceEat >= Lynx.hungerTimeMax)
-        {
+    public void starving(Lynx lynx) {
+        if (lynx.timeSinceEat >= Lynx.hungerTimeMax) {
             this.removeCreature(lynx.getRowPosition(), lynx.getColPosition());
         }
     }
 }
-
