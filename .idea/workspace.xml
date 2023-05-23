@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec8a8784-827c-4440-b75f-e0c8ae4f796c" name="Default Changelist" comment="output fix, useless code del">
+    <list default="true" id="ec8a8784-827c-4440-b75f-e0c8ae4f796c" name="Default Changelist" comment="GUI added">
       <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/alpashaev/entity/animal/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alpashaev/entity/animal/Creature.java" afterDir="false" />
@@ -70,6 +70,11 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\KPI\OOP\Predator" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -285,29 +290,30 @@
     <MESSAGE value="simul,lynxEat methods done" />
     <MESSAGE value="some changes" />
     <MESSAGE value="output fix, useless code del" />
-    <option name="LAST_COMMIT_MESSAGE" value="output fix, useless code del" />
+    <MESSAGE value="GUI added" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI added" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="0" y="35" key="CommitChangelistDialog2" timestamp="1684854700854">
+    <state x="0" y="35" key="CommitChangelistDialog2" timestamp="1684854964058">
       <screen x="0" y="43" width="1536" height="821" />
     </state>
-    <state x="0" y="35" key="CommitChangelistDialog2/0.43.1536.821@0.43.1536.821" timestamp="1684854700854" />
-    <state width="1493" height="260" key="GridCell.Tab.0.bottom" timestamp="1683816749118">
+    <state x="0" y="35" key="CommitChangelistDialog2/0.43.1536.821@0.43.1536.821" timestamp="1684854964058" />
+    <state width="1493" height="209" key="GridCell.Tab.0.bottom" timestamp="1684854977163">
       <screen x="0" y="43" width="1536" height="821" />
     </state>
-    <state width="1493" height="260" key="GridCell.Tab.0.bottom/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
-    <state width="1493" height="260" key="GridCell.Tab.0.center" timestamp="1683816749118">
+    <state width="1493" height="209" key="GridCell.Tab.0.bottom/0.43.1536.821@0.43.1536.821" timestamp="1684854977163" />
+    <state width="1493" height="209" key="GridCell.Tab.0.center" timestamp="1684854977163">
       <screen x="0" y="43" width="1536" height="821" />
     </state>
-    <state width="1493" height="260" key="GridCell.Tab.0.center/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
-    <state width="1493" height="260" key="GridCell.Tab.0.left" timestamp="1683816749118">
+    <state width="1493" height="209" key="GridCell.Tab.0.center/0.43.1536.821@0.43.1536.821" timestamp="1684854977163" />
+    <state width="1493" height="209" key="GridCell.Tab.0.left" timestamp="1684854977163">
       <screen x="0" y="43" width="1536" height="821" />
     </state>
-    <state width="1493" height="260" key="GridCell.Tab.0.left/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
-    <state width="1493" height="260" key="GridCell.Tab.0.right" timestamp="1683816749118">
+    <state width="1493" height="209" key="GridCell.Tab.0.left/0.43.1536.821@0.43.1536.821" timestamp="1684854977163" />
+    <state width="1493" height="209" key="GridCell.Tab.0.right" timestamp="1684854977163">
       <screen x="0" y="43" width="1536" height="821" />
     </state>
-    <state width="1493" height="260" key="GridCell.Tab.0.right/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
+    <state width="1493" height="209" key="GridCell.Tab.0.right/0.43.1536.821@0.43.1536.821" timestamp="1684854977163" />
     <state width="1493" height="260" key="GridCell.Tab.1.bottom" timestamp="1683816749118">
       <screen x="0" y="43" width="1536" height="821" />
     </state>
