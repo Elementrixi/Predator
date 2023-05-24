@@ -1,9 +1,10 @@
 package com.alpashaev.manager;
 
-import com.alpashaev.map.Forest;
+import com.alpashaev.chart.Chart;
 import com.alpashaev.entity.animal.Creature;
 import com.alpashaev.entity.animal.Lynx;
 import com.alpashaev.entity.animal.Rat;
+import com.alpashaev.map.Forest;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -20,9 +21,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-
 public class SimulationManager extends Application {
-    static int[][] data;
+    public static int[][] data;
 
     public static void test() {
         try {
@@ -293,7 +293,7 @@ public class SimulationManager extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         int[] rats = new int[1];
         int[] lynx = new int[1];
         int[] hungerTime = new int[1];
@@ -324,8 +324,9 @@ public class SimulationManager extends Application {
         Button buttonDefaultData = new Button("Default data");
         Button buttonStart = new Button("Start");
         Button buttonClose = new Button("Close");
+        Button buttonChart = new Button("Chart");
 
-        vpane.getChildren().addAll(label, ratField, label1, lynxField, label2, hungerTimeField, label3, maxStepField, buttonSet, buttonDefaultData, buttonStart);
+        vpane.getChildren().addAll(label, ratField, label1, lynxField, label2, hungerTimeField, label3, maxStepField, buttonSet, buttonDefaultData, buttonStart, buttonChart);
 
         textParser(ratField);
         textParser(lynxField);
@@ -350,7 +351,7 @@ public class SimulationManager extends Application {
             rats[0] = 100;
             lynx[0] = 50;
             hungerTime[0] = 8;
-            maxStep[0] = 15;
+            maxStep[0] = 1500;
             Lynx.hungerTimeMax = hungerTime[0];
             forest[0] = new Forest(rats[0], lynx[0]);
             data = new int[maxStep[0]][2];
@@ -383,6 +384,12 @@ public class SimulationManager extends Application {
 
         buttonClose.setOnAction(e -> stage1.close());
 
+        buttonChart.setOnAction(e -> {
+            if (maxStep[0] != 0) {
+                Chart.draw(data);
+            }
+        });
+
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(e -> Platform.exit());
@@ -411,3 +418,4 @@ public class SimulationManager extends Application {
     }
 
 }
+
