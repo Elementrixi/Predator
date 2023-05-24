@@ -1,10 +1,9 @@
 package com.alpashaev.manager;
 
+import com.alpashaev.map.Forest;
 import com.alpashaev.entity.animal.Creature;
 import com.alpashaev.entity.animal.Lynx;
 import com.alpashaev.entity.animal.Rat;
-import com.alpashaev.map.Forest;
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -16,17 +15,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+
 public class SimulationManager extends Application {
     static int[][] data;
-    int COLUMNS = 200;
-    int ROWS = 200;
 
     public static void test() {
         try {
@@ -70,7 +66,7 @@ public class SimulationManager extends Application {
 
         Integer[] randomDirections = Forest.randomDirections();
         boolean moveComplete = false;
-        for (int i = 0; i < 4 && (moveComplete == false); i++) {
+        for (int i = 0; i < 4 && (!moveComplete); i++) {
             switch (randomDirections[i]) {
                 case 1:
                     if (lynx.topFlag)
@@ -121,7 +117,7 @@ public class SimulationManager extends Application {
         Integer[] randomDirections = Forest.randomDirections();
         boolean moveComplete = false;
 
-        for (int i = 0; i < 4 && (moveComplete == false); i++) {
+        for (int i = 0; i < 4 && (!moveComplete); i++) {
             switch (randomDirections[i]) {
                 case 1:
                     if (rat.topFlag)
@@ -304,7 +300,6 @@ public class SimulationManager extends Application {
         int[] maxStep = new int[1];
 
         VBox vpane = new VBox();
-        StackPane stackPane = new StackPane();
 
         ScrollPane scrollPane = new ScrollPane();
         GridPane gridPane = new GridPane();
@@ -393,27 +388,26 @@ public class SimulationManager extends Application {
         stage.setOnCloseRequest(e -> Platform.exit());
     }
 
+
     private void updateGrid(GridPane gridPane) {
         gridPane.getChildren().clear();
-        for (int row = 0; row < ROWS; row++) {
-            for (int col = 0; col < COLUMNS; col++) {
-                StackPane cell = new StackPane();
-                cell.setPrefSize(10, 10);
-                Rectangle rectangle = new Rectangle(10, 10, Color.GREEN);
-                rectangle.setStroke(Color.BLACK);
-                gridPane.add(cell, col, row);
-                if (Forest.forest[row][col] != null) {
-                    Circle circle = new Circle(5, Color.RED);
-                    if (Forest.forest[row][col] instanceof Rat) {
-                        circle = new Circle(5, Color.BLUE);
+
+        for (int i = 0; i < Forest.ROWS; i++) {
+            for (int j = 0; j < Forest.COLUMNS; j++) {
+                Creature creature = Forest.getCreature(i, j);
+                gridPane.setPrefSize(10, 10);
+                Rectangle rectangle = new Rectangle(10, 10, Color.WHITE);
+                if (creature != null) {
+                    if (creature instanceof Rat) {
+                        rectangle.setFill(Color.GRAY);
+                    } else if (creature instanceof Lynx) {
+                        rectangle.setFill(Color.ORANGE);
                     }
-                    cell.getChildren().addAll(circle);
-                } else {
-                    cell.getChildren().add(rectangle);
                 }
+
+                gridPane.add(rectangle, j, i);
             }
         }
     }
 
 }
-
