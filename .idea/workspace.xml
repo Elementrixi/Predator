@@ -20,13 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec8a8784-827c-4440-b75f-e0c8ae4f796c" name="Default Changelist" comment="GUI added">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/alpashaev/entity/animal/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alpashaev/entity/animal/Creature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/alpashaev/entity/animal/Lynx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alpashaev/entity/animal/Lynx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/alpashaev/entity/animal/Rat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alpashaev/entity/animal/Rat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/entity/animal/Creature.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/entity/animal/Lynx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/entity/animal/Rat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/manager/SimulationManager$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/manager/SimulationManager$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/manager/SimulationManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/map/Forest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/alpashaev/manager/SimulationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alpashaev/manager/SimulationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/alpashaev/map/Forest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alpashaev/map/Forest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +40,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -55,21 +59,13 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2FwRpxznIGswsriEtCWN1dGUnjE" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -105,6 +101,7 @@
       </list>
     </option>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -141,6 +138,8 @@
       <workItem from="1673881964856" duration="1987000" />
       <workItem from="1675415696503" duration="2387000" />
       <workItem from="1675767548000" duration="12000" />
+      <workItem from="1684855135510" duration="197000" />
+      <workItem from="1685033550448" duration="52000" />
     </task>
     <task id="LOCAL-00001" summary="Main file added">
       <created>1665401631358</created>
@@ -258,16 +257,14 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -294,53 +291,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="GUI added" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="0" y="35" key="CommitChangelistDialog2" timestamp="1684854964058">
+    <state x="465" y="279" key="com.intellij.ide.util.TipDialog" timestamp="1685096341765">
       <screen x="0" y="43" width="1536" height="821" />
     </state>
-    <state x="0" y="35" key="CommitChangelistDialog2/0.43.1536.821@0.43.1536.821" timestamp="1684854964058" />
-    <state width="1493" height="209" key="GridCell.Tab.0.bottom" timestamp="1684854977163">
-      <screen x="0" y="43" width="1536" height="821" />
-    </state>
-    <state width="1493" height="209" key="GridCell.Tab.0.bottom/0.43.1536.821@0.43.1536.821" timestamp="1684854977163" />
-    <state width="1493" height="209" key="GridCell.Tab.0.center" timestamp="1684854977163">
-      <screen x="0" y="43" width="1536" height="821" />
-    </state>
-    <state width="1493" height="209" key="GridCell.Tab.0.center/0.43.1536.821@0.43.1536.821" timestamp="1684854977163" />
-    <state width="1493" height="209" key="GridCell.Tab.0.left" timestamp="1684854977163">
-      <screen x="0" y="43" width="1536" height="821" />
-    </state>
-    <state width="1493" height="209" key="GridCell.Tab.0.left/0.43.1536.821@0.43.1536.821" timestamp="1684854977163" />
-    <state width="1493" height="209" key="GridCell.Tab.0.right" timestamp="1684854977163">
-      <screen x="0" y="43" width="1536" height="821" />
-    </state>
-    <state width="1493" height="209" key="GridCell.Tab.0.right/0.43.1536.821@0.43.1536.821" timestamp="1684854977163" />
-    <state width="1493" height="260" key="GridCell.Tab.1.bottom" timestamp="1683816749118">
-      <screen x="0" y="43" width="1536" height="821" />
-    </state>
-    <state width="1493" height="260" key="GridCell.Tab.1.bottom/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
-    <state width="1493" height="260" key="GridCell.Tab.1.center" timestamp="1683816749118">
-      <screen x="0" y="43" width="1536" height="821" />
-    </state>
-    <state width="1493" height="260" key="GridCell.Tab.1.center/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
-    <state width="1493" height="260" key="GridCell.Tab.1.left" timestamp="1683816749118">
-      <screen x="0" y="43" width="1536" height="821" />
-    </state>
-    <state width="1493" height="260" key="GridCell.Tab.1.left/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
-    <state width="1493" height="260" key="GridCell.Tab.1.right" timestamp="1683816749118">
-      <screen x="0" y="43" width="1536" height="821" />
-    </state>
-    <state width="1493" height="260" key="GridCell.Tab.1.right/0.43.1536.821@0.43.1536.821" timestamp="1683816749118" />
-    <state x="277" y="43" key="SettingsEditor" timestamp="1684854559231">
-      <screen x="0" y="43" width="1536" height="821" />
-    </state>
-    <state x="277" y="43" key="SettingsEditor/0.43.1536.821@0.43.1536.821" timestamp="1684854559231" />
-    <state x="93" y="136" width="1350" height="635" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1683382037000">
-      <screen x="0" y="43" width="1536" height="821" />
-    </state>
-    <state x="93" y="136" width="1350" height="635" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.43.1536.821@0.43.1536.821" timestamp="1683382037000" />
-    <state x="333" y="191" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1683813811484">
-      <screen x="0" y="43" width="1536" height="821" />
-    </state>
-    <state x="333" y="191" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.43.1536.821@0.43.1536.821" timestamp="1683813811484" />
+    <state x="465" y="279" key="com.intellij.ide.util.TipDialog/0.43.1536.821@0.43.1536.821" timestamp="1685096341765" />
   </component>
 </project>

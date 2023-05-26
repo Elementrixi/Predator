@@ -1,10 +1,15 @@
 package com.alpashaev.chart;
 
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class Chart {
@@ -14,13 +19,10 @@ public class Chart {
 
         LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
         lineChart.setTitle("Creature Population");
-        lineChart.setLegendVisible(true);
 
         XYChart.Series<Number, Number> lynxSeries = new XYChart.Series<>();
-        lynxSeries.setName("Lynx");
 
         XYChart.Series<Number, Number> ratSeries = new XYChart.Series<>();
-        ratSeries.setName("Rat");
 
         for (int k = 0; k < data.length; k++) {
             int[] stepData = data[k];
@@ -40,7 +42,24 @@ public class Chart {
         lineChart.getData().add(lynxSeries);
         lineChart.getData().add(ratSeries);
 
-        Scene scene = new Scene(lineChart, 1400, 600);
+        Rectangle lynxSymbol = new Rectangle(10, 10, Color.ORANGE);
+        Rectangle ratSymbol = new Rectangle(10, 10, Color.GRAY);
+
+        GridPane legend = new GridPane();
+        legend.setHgap(10);
+        legend.setPadding(new Insets(5));
+
+        legend.add(lynxSymbol, 0, 0);
+        legend.add(ratSymbol, 0, 1);
+        legend.add(new javafx.scene.control.Label("Lynx"), 1, 0);
+        legend.add(new javafx.scene.control.Label("Rat"), 1, 1);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.setCenter(lineChart);
+        borderPane.setBottom(legend);
+
+
+        Scene scene = new Scene(borderPane, 1400, 600);
         Stage stage = new Stage();
 
         stage.setTitle("Creature Population Chart");
