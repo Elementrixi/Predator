@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -19,18 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec8a8784-827c-4440-b75f-e0c8ae4f796c" name="Default Changelist" comment="GUI added">
+    <list default="true" id="ec8a8784-827c-4440-b75f-e0c8ae4f796c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/entity/animal/Creature.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/entity/animal/Lynx.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/entity/animal/Rat.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/manager/SimulationManager$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/manager/SimulationManager$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/manager/SimulationManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Predator/com/alpashaev/map/Forest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/alpashaev/manager/SimulationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alpashaev/manager/SimulationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Predator.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,14 +58,34 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="2FwRpxznIGswsriEtCWN1dGUnjE" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "ilias",
+    "last_opened_file_path": "D:/KPI/OOP/Predator",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\KPI\OOP\Predator" />
+      <recent name="D:\KPI\OOP\Predator\src" />
+      <recent name="D:\KPI\OOP\Predator\src\com\alpashaev" />
     </key>
   </component>
   <component name="RunManager">
@@ -140,6 +156,7 @@
       <workItem from="1675767548000" duration="12000" />
       <workItem from="1684855135510" duration="197000" />
       <workItem from="1685033550448" duration="52000" />
+      <workItem from="1685096596515" duration="161000" />
     </task>
     <task id="LOCAL-00001" summary="Main file added">
       <created>1665401631358</created>
@@ -253,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673279258883</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="code clean up and chart legend added">
+      <created>1685096475383</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1685096475383</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,12 +312,7 @@
     <MESSAGE value="some changes" />
     <MESSAGE value="output fix, useless code del" />
     <MESSAGE value="GUI added" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI added" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="465" y="279" key="com.intellij.ide.util.TipDialog" timestamp="1685096341765">
-      <screen x="0" y="43" width="1536" height="821" />
-    </state>
-    <state x="465" y="279" key="com.intellij.ide.util.TipDialog/0.43.1536.821@0.43.1536.821" timestamp="1685096341765" />
+    <MESSAGE value="code clean up and chart legend added" />
+    <option name="LAST_COMMIT_MESSAGE" value="code clean up and chart legend added" />
   </component>
 </project>
