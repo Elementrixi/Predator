@@ -15,10 +15,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
 public class SimulationManager extends Application {
@@ -255,7 +257,6 @@ public class SimulationManager extends Application {
             }
         });
     }
-
     @Override
     public void start(Stage stage) {
         int[] rats = new int[1];
@@ -268,6 +269,9 @@ public class SimulationManager extends Application {
         ScrollPane scrollPane = new ScrollPane();
         GridPane gridPane = new GridPane();
         scrollPane.setContent(gridPane);
+
+        Scale zoomTransform = new Scale(1.0, 1.0);
+        gridPane.getTransforms().add(zoomTransform);
 
         Scene scene = new Scene(vpane, 300, 300);
         Scene scene1 = new Scene(scrollPane, 1500, 750);
@@ -347,6 +351,18 @@ public class SimulationManager extends Application {
             stage1.show();
         });
 
+        scrollPane.addEventFilter(ScrollEvent.ANY, event -> {
+            if (event.isControlDown()) {
+                double delta = 1.2;
+                if (event.getDeltaY() < 0) {
+                    delta = 1.0 / delta;
+                }
+                zoomTransform.setX(zoomTransform.getX() * delta);
+                zoomTransform.setY(zoomTransform.getY() * delta);
+                event.consume();
+            }
+        });
+
         buttonClose.setOnAction(e -> stage1.close());
 
         buttonChart.setOnAction(e -> {
@@ -360,12 +376,13 @@ public class SimulationManager extends Application {
         stage.setOnCloseRequest(e -> Platform.exit());
     }
 
-
+    private static Creature[][] forestPrev = new Creature[200][200];
     private void updateGrid(GridPane gridPane) {
         gridPane.getChildren().clear();
 
         for (int i = 0; i < Forest.ROWS; i++) {
             for (int j = 0; j < Forest.COLUMNS; j++) {
+                if (forestPrev[i][j] == Forest.forest[i][j]) continue;
                 Creature creature = Forest.getCreature(i, j);
                 gridPane.setPrefSize(10, 10);
                 Rectangle rectangle = new Rectangle(10, 10, Color.WHITE);
@@ -378,6 +395,7 @@ public class SimulationManager extends Application {
                 }
 
                 gridPane.add(rectangle, j, i);
+                forestPrev[i][j] = Forest.forest[i][j];
             }
         }
     }
